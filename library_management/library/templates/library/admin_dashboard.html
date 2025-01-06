@@ -1,0 +1,18 @@
+<h2>Admin Dashboard</h2>
+<h3>Books in Library</h3>
+<div class="book-list">
+    {% for book in books %}
+        <div class="book-item">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            <h4>{{ book.title }}</h4>
+            <p>{{ book.author }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<h3>Members</h3>
+<ul>
+    {% for member in members %}
+        <li>{{ member.username }} - {{ member.email }}</li>
+    {% endfor %}
+</ul>

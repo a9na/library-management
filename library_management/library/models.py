@@ -27,15 +27,18 @@ class CustomUser(AbstractUser):
         blank=True
     )
 
-
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
-    isbn = models.CharField(max_length=13, unique=True)
-    available = models.BooleanField(default=True)
+    description = models.TextField()
+    isbn = models.CharField(max_length=13, blank=True, null=True)  # ISBN field (optional)
+    available = models.BooleanField(default=True)  # Boolean field to track availability
+    image = models.ImageField(upload_to='book_images/', blank=True, null=True)  # Image field (optional)
 
     def __str__(self):
         return self.title
+
+
 
 class Borrow(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

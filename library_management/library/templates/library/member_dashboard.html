@@ -1,0 +1,7 @@
+<h2>{{ member.username }}'s Dashboard</h2>
+<h3>Your Borrowed Books</h3>
+<ul>
+    {% for book in borrowed_books %}
+        <li>{{ book.title }} by {{ book.author }}</li>
+    {% endfor %}
+</ul>

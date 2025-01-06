@@ -1,93 +1,128 @@
-# library_management
+# Software Requirements Specification (SRS) for Library Management System
 
+## 1. Introduction
 
+### 1.1 Purpose
+This document provides the Software Requirements Specification (SRS) for the Library Management System (LMS). The purpose of this system is to manage library resources, including books, members, and borrowing processes, to ensure an efficient and user-friendly experience for both library staff and members.
 
-## Getting started
+### 1.2 Document Conventions
+This document follows the IEEE 830-1998 standard for software requirements specifications. It includes functional and non-functional requirements, along with system architecture and design constraints.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### 1.3 Intended Audience and Reading Suggestions
+This document is intended for developers, designers, testers, and stakeholders working on the Library Management System project. It is recommended that readers familiarize themselves with the entire document to understand the system's requirements comprehensively.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### 1.4 Product Scope
+The Library Management System will provide functionalities such as:
+- Registering and managing library members.
+- Managing library books, including their acquisition, categorization, and availability status.
+- Facilitating borrowing and returning books.
+- Providing search functionalities for both books and members.
+- Tracking overdue books and generating reports.
 
-## Add your files
+### 1.5 References
+IEEE 830-1998: IEEE Standard for Software Requirements Specifications (IEEE, 1998).  
+Django 5.0 documentation.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### 1.6 Overview
+The LMS will be a web-based application that allows library staff and members to interact with the system for various purposes, including borrowing and returning books, managing member profiles, and searching the library’s catalog.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/ana.novkovic/library_management.git
-git branch -M main
-git push -uf origin main
-```
+## 2. Overall Description
 
-## Integrate with your tools
+### 2.1 Product Perspective
+The Library Management System will be a web application designed for library staff and members. It will have distinct user roles with different levels of access:
+- **Admin:** Manages all library operations.
+- **Member:** Borrows and returns books.
 
-- [ ] [Set up project integrations](https://gitlab.com/ana.novkovic/library_management/-/settings/integrations)
+The system will use a simple and intuitive interface with features that allow easy navigation for both staff and members.
 
-## Collaborate with your team
+### 2.2 Product Functions
+- **Book Management:** Admin can add, remove, and modify book details.
+- **Member Management:** Admin can add, update, or delete member accounts.
+- **Book Search:** Members and staff can search for books by title, author, genre, etc.
+- **Borrowing and Returning Books:** Members can borrow books and return them on time.
+- **Notifications:** Members will be notified of overdue books or book availability.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### 2.3 User Classes and Characteristics
+The LMS will have two primary user classes:
+- **Admin:** Manages the library operations (book management, member management, reports).
+- **Member:** Can borrow books, return them, and search the library catalog.
 
-## Test and Deploy
+### 2.4 Operating Environment
+The LMS will be a web application, hosted on a web server, and accessible via modern web browsers such as Chrome, Firefox, and Safari.
 
-Use the built-in continuous integration in GitLab.
+### 2.5 Design and Implementation Constraints
+- The application will be developed using the Django framework.
+- The database will be an SQLite database for the first release.
+- The system will be scalable for future versions, possibly integrating more advanced features like cloud storage or distributed systems.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### 2.6 User Documentation
+User manuals and help guides will be provided for both admins and members to ensure they can navigate the system easily.
 
-***
+### 2.7 Assumptions and Dependencies
+- The application will assume internet access for cloud-based features and data synchronization.
+- The system will use Django’s default authentication system for managing user logins and access control.
 
-# Editing this README
+## 3. Specific Requirements
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 3.1 Functional Requirements
 
-## Suggestions for a good README
+#### 3.1.1 User Registration
+**Req U1:** The system will allow new members to register by providing personal information (name, email, password). The system will verify the email is unique.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+#### 3.1.2 User Login
+**Req U2:** The system will allow users to log in with their email and password. The system will verify credentials and allow access to the dashboard.
 
-## Name
-Choose a self-explaining name for your project.
+#### 3.1.3 Book Management (Admin)
+**Req A1:** Admin users will be able to add new books, edit existing book details, and remove books from the system.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+#### 3.1.4 Member Management (Admin)
+**Req A2:** Admins will be able to add, edit, and delete member accounts.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+#### 3.1.5 Borrowing and Returning Books
+**Req U3:** Members will be able to borrow books. Upon borrowing, the system will update the book's availability status.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**Req U4:** Members will be able to return books. The system will track return dates and notify if books are overdue.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+#### 3.1.6 Book Search
+**Req U5:** The system will provide search functionality for books, allowing users to search by title, author, or category.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### 3.2 Non-Functional Requirements
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+#### 3.2.1 Usability
+- The LMS will be designed for ease of use, with a simple interface for both admin and member users.
+  
+#### 3.2.2 Performance
+- The system should load pages within 3 seconds to ensure a fast and responsive experience.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+#### 3.2.3 Security
+- The system will use HTTPS for secure communication.
+- User passwords will be hashed and stored securely.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+### 3.3 System Interfaces
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+#### 3.3.1 User Interface
+The application will use a web-based user interface compatible with desktop and mobile devices. The UI will include:
+- A navigation bar with links to the dashboard, book search, and user profile.
+- A member dashboard to view borrowed books, due dates, and profile settings.
+- An admin dashboard to manage books, members, and view reports.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+#### 3.3.2 Software Interfaces
+- The system will be developed using Django 5.0.
+- The database will be managed using SQLite for the initial version.
+  
+#### 3.3.3 Communications Interfaces
+The system will use secure HTTP (HTTPS) for communication between the client and server.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## 4. Other Non-Functional Requirements
 
-## License
-For open source projects, say how it is licensed.
+### 4.1 Security
+- All user data, including personal information and passwords, will be securely stored and transmitted.
+  
+### 4.2 Safety
+- The application will be designed to prevent unsafe actions, such as allowing unauthorized users to modify or delete data.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### 4.3 Quality Attributes
+- The system should have an uptime of at least 99% to ensure reliability and availability for users.
+
+## 5. Conclusion
+This document outlines the primary requirements for the Library Management System, focusing on both functional and non-functional aspects to ensure that the system meets user needs and provides a reliable, secure, and user-friendly platform for library management.

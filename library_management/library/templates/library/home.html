@@ -1,21 +1,29 @@
 <!-- library/templates/library/home.html -->
-<!DOCTYPE html>
-<html>
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'library/styles.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Library Management System</h1>
-    
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}!</p>
-        <p><a href="{% url 'logout' %}">Logout</a></p>
-        <p><a href="{% url 'book_list' %}">View Available Books</a></p>
-    {% else %}
-        <p>Login or Register to continue.</p>
-        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
-    {% endif %}
+    <div class="container">
+        <h1 class="my-5">Welcome to the Library Management System</h1>
+        
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+            <p><a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></p>
+            <p><a href="{% url 'book_list' %}" class="btn btn-primary">View Available Books</a></p>
+        {% else %}
+            <p>Login or Register to continue.</p>
+            <p><a href="{% url 'login' %}" class="btn btn-success">Login</a> | <a href="{% url 'register' %}" class="btn btn-info">Register</a></p>
+        {% endif %}
+    </div>
 </body>
 </html>

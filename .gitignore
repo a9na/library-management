@@ -14,14 +14,6 @@ venv/
 # Django secret key
 *.env
 
-# SQLite database file (if you're using SQLite)
-db.sqlite3
-
-# Static files (if you're collecting static files locally)
-static/
-
-# Media files (uploaded by users)
-media/
 
 # IDE/editor directories and files
 .vscode/

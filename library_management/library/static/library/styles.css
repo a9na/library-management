@@ -1,0 +1,61 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+.header {
+    text-align: center;
+    background-color: #3b5998;
+    color: white;
+    padding: 20px;
+    font-size: 36px;
+}
+
+/* Styling for the book list */
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+/* Each book item styling */
+.book-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.book-item:hover {
+    transform: scale(1.05);
+}
+
+/* Styling for the book cover image */
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Styling for the book info (title and author) */
+.book-info h2 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.book-info p {
+    font-size: 14px;
+    color: #666;
+}
