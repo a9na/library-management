@@ -1,0 +1,21 @@
+<!-- library/templates/library/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'library/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Library Management System</h1>
+    
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+        <p><a href="{% url 'book_list' %}">View Available Books</a></p>
+    {% else %}
+        <p>Login or Register to continue.</p>
+        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
+    {% endif %}
+</body>
+</html>
