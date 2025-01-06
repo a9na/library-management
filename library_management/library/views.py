@@ -6,9 +6,13 @@ from django.contrib.auth.decorators import user_passes_test
 from .forms import BookForm
 from .models import CustomUser, Book, Borrow
 
-# Home view (accessible for all users)
 def home(request):
-    return render(request, 'library/home.html')
+    # Fetch recommended books (books marked as recommended)
+    recommended_books = Book.objects.filter(is_recommended=True, available=True)
+
+    return render(request, 'library/home.html', {
+        'recommended_books': recommended_books,
+    })
 
 
 def book_list(request):
@@ -129,3 +133,10 @@ def return_book(request, borrow_id):
         return redirect('member_dashboard')
     else:
         return redirect('home')  # Redirect if invalid access
+
+
+def book_detail(request, id):
+    # Fetch the book by ID
+    book = get_object_or_404(Book, id=id)
+
+    return render(request, 'library/book_detail.html', {'book': book})

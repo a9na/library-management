@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the Library Management System</title>
+    <title>{{ book.title }} - Details</title>
     
     {% load static %}
 
@@ -34,29 +34,18 @@
     </header>
 
     <main>
-        <h1>Welcome, {{ user.username }}!</h1>
-        <p>Welcome to the Library Management System</p>
+        <h1>{{ book.title }}</h1>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Description:</strong> {{ book.description }}</p>
+        
+        {% if book.image %}
+            <img src="{{ book.image.url }}" alt="Book image" width="300">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
 
-        <h2>Recommended Books</h2>
-        <div class="book-list">
-            {% for book in recommended_books %}
-                <div class="book-item">
-                    <h3>{{ book.title }}</h3>
-                    <p>Author: {{ book.author }}</p>
-                    <p>Description: {{ book.description }}</p>
-
-                    {% if book.image %}
-                        <img src="{{ book.image.url }}" alt="Book image" width="200">
-                    {% else %}
-                        <p>No image available</p>
-                    {% endif %}
-                    
-                    <a href="{% url 'book_detail' book.id %}">View Details</a>
-                </div>
-            {% empty %}
-                <p>No recommended books at the moment.</p>
-            {% endfor %}
-        </div>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Availability:</strong> {% if book.available %} Available {% else %} Unavailable {% endif %}</p>
     </main>
 
     <!-- Footer -->

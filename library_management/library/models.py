@@ -34,6 +34,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=13, blank=True, null=True)  # ISBN field (optional)
     available = models.BooleanField(default=True)  # Boolean field to track availability
     image = models.ImageField(upload_to='book_images/', blank=True, null=True)  # Image field (optional)
+    is_recommended = models.BooleanField(default=False)  # New field to mark recommended books
 
     def __str__(self):
         return self.title
