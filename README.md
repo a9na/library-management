@@ -14,9 +14,9 @@ This document is intended for developers, designers, testers, and stakeholders w
 ### 1.4 Product Scope
 The Library Management System will provide functionalities such as:
 - Registering and managing library members.
-- Managing library books, including their acquisition, categorization, and availability status.
+- Managing library books and availability status.
 - Facilitating borrowing and returning books.
-- Providing search functionalities for both books and members.
+- Providing search functionalities for books.
 - Tracking overdue books and generating reports.
 
 ### 1.5 References
@@ -30,36 +30,36 @@ The LMS will be a web-based application that allows library staff and members to
 
 ### 2.1 Product Perspective
 The Library Management System will be a web application designed for library staff and members. It will have distinct user roles with different levels of access:
-- **Admin:** Manages all library operations.
-- **Member:** Borrows and returns books.
+- **Client:** Can view books and borrow them.
+- **Privileged User:** Can add books and manage their own borrowed books.
+- **Administrator:** Can manage all users and books and access the admin dashboard.
 
 The system will use a simple and intuitive interface with features that allow easy navigation for both staff and members.
 
 ### 2.2 Product Functions
 - **Book Management:** Admin can add, remove, and modify book details.
 - **Member Management:** Admin can add, update, or delete member accounts.
-- **Book Search:** Members and staff can search for books by title, author, genre, etc.
+- **Book Search:** Priviliged Users can search for books by title, author, genre, etc.
 - **Borrowing and Returning Books:** Members can borrow books and return them on time.
 - **Notifications:** Members will be notified of overdue books or book availability.
 
 ### 2.3 User Classes and Characteristics
-The LMS will have two primary user classes:
-- **Admin:** Manages the library operations (book management, member management, reports).
-- **Member:** Can borrow books, return them, and search the library catalog.
+The LMS will have three primary user classes:
+- **Client:** Can view books and borrow them.
+- **Privileged User:** Can add books and manage their own borrowed books.
+- **Administrator:** Can manage all users and books and access the admin dashboard.
 
 ### 2.4 Operating Environment
 The LMS will be a web application, hosted on a web server, and accessible via modern web browsers such as Chrome, Firefox, and Safari.
 
 ### 2.5 Design and Implementation Constraints
 - The application will be developed using the Django framework.
-- The database will be an SQLite database for the first release.
 - The system will be scalable for future versions, possibly integrating more advanced features like cloud storage or distributed systems.
 
 ### 2.6 User Documentation
 User manuals and help guides will be provided for both admins and members to ensure they can navigate the system easily.
 
 ### 2.7 Assumptions and Dependencies
-- The application will assume internet access for cloud-based features and data synchronization.
 - The system will use Django’s default authentication system for managing user logins and access control.
 
 ## 3. Specific Requirements
