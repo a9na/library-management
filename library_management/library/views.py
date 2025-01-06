@@ -11,10 +11,17 @@ def home(request):
     return render(request, 'library/home.html')
 
 
-# Book list view (accessible for all users, only available books are shown)
 def book_list(request):
-    books = Book.objects.filter(available=True)  # Only available books
-    return render(request, 'library/book_list.html', {'books': books})
+    # Query books that are available and unavailable
+    available_books = Book.objects.filter(available=True)
+    unavailable_books = Book.objects.filter(available=False)
+
+    return render(request, 'library/book_list.html', {
+        'available_books': available_books,
+        'unavailable_books': unavailable_books,
+    })
+
+
 
 
 # Add book view (only for privileged users and admins)
@@ -95,17 +102,20 @@ def member_dashboard(request):
     else:
         return redirect('login')  # Redirect to login page if not authenticated
 
-
-# Borrowing a book (client can borrow books if available)
 def borrow_book(request, book_id):
-    book = Book.objects.get(id=book_id)
-    if request.user.is_authenticated and book.available:
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to login if the user is not logged in
+
+    book = get_object_or_404(Book, id=book_id)
+    
+    if book.available:
         Borrow.objects.create(user=request.user, book=book)
         book.available = False  # Mark the book as unavailable
         book.save()
-        return redirect('book_list')
+        return redirect('book_list')  # Redirect back to the available books list
     else:
-        return redirect('login')  # Redirect to login if not authenticated
+        return render(request, 'library/book_list.html', {'error': 'Book is already borrowed'})
+
 
 
 # Returning a book (client can return borrowed books)
