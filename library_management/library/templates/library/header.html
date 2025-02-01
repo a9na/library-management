@@ -1,0 +1,22 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'book_list' %}">Book List</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                {% if user.user_type == 'reader' %}
+                    <li><a href="{% url 'reader_dashboard' %}">Reader Dashboard</a></li>
+                {% elif user.user_type == 'librarian' %}
+                    <li><a href="{% url 'librarian_dashboard' %}">Librarian Dashboard</a></li>
+                {% elif user.user_type == 'admin' %}
+                    <li><a href="/admin/">Admin Dashboard</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

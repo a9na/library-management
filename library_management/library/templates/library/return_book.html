@@ -1,0 +1,20 @@
+<!-- return_book.html -->
+{% extends 'library/home.html' %}
+
+{% block content %}
+    <h2>Return Book</h2>
+    
+    <p><strong>Book Title:</strong> {{ borrow.book.title }}</p>
+    <p><strong>Borrowed on:</strong> {{ borrow.borrow_date }}</p>
+    
+    {% if borrow.return_date %}
+        <p><strong>Returned on:</strong> {{ borrow.return_date }}</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="return_date">Return Date:</label>
+            <input type="date" name="return_date" id="return_date">
+            <button type="submit">Return Book</button>
+        </form>
+    {% endif %}
+{% endblock %}

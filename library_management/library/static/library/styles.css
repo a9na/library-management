@@ -1,7 +1,16 @@
 /* styles.css */
+html, body {
+    height: 100%; /* Ensure the page takes full height */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 header {
@@ -51,12 +60,91 @@ header form button {
     margin: 0;
 }
 
+.book-list {
+    padding: 10px;
+    border: 1px solid #ccc;
+    overflow-y: auto;  /* Enables vertical scrolling */
+    flex-grow: 1;  /* Allows the list to take available space */
+}
+
 footer {
     text-align: center;
-    padding: 10px 0;
     background-color: #333;
     color: white;
-    position: fixed;
     width: 100%;
-    bottom: 0;
+    padding: 10px 0;
+    /* Remove position: absolute, sticky footer handled by flexbox */
+    margin-top: auto;  /* Pushes the footer to the bottom */
 }
+
+.borrow-btn {
+    background-color: #a52a2a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+/* Hover effect for the borrow button */
+.borrow-btn:hover {
+    background-color: #8b4513; /* darker brown */
+}
+
+/* Ensure the footer stays at the bottom but does not overlap content */
+footer {
+    margin-top: auto; /* Sticky footer */
+}
+
+/* Style for buttons across the site */
+button {
+    background-color: #a52a2a;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8b4513;
+}
+
+.book-detail-page {
+    padding: 16px;
+}
+
+
+.view-details-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the view details button */
+.view-details-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.back-btn {
+    background-color: #1c0fcf; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+

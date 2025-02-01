@@ -3,38 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the Library Management System</title>
+    <title>{% block title %}Welcome to the Library Management System{% endblock %}</title>
     
     {% load static %}
-
     <link rel="stylesheet" href="{% static 'library/styles.css' %}">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'book_list' %}">Book List</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% if user.user_type == 'client' %}
-                        <li><a href="{% url 'member_dashboard' %}">Dashboard</a></li>
-                    {% elif user.user_type == 'privileged' %}
-                        <li><a href="{% url 'privileged_dashboard' %}">Privileged Dashboard</a></li>
-                    {% elif user.user_type == 'admin' %}
-                        <li><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
-                    {% endif %}
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
+    <!-- Include Header -->
+    {% include 'library/header.html' %}
 
+    <!-- Main Content -->
     <main>
-        <h1>Welcome, {{ user.username }}!</h1>
+        {% block content %}
+        <!-- Default homepage content -->
+        <h1>Welcome {{ user.username }}!</h1>
         <p>Welcome to the Library Management System</p>
 
         <h2>Recommended Books</h2>
@@ -51,17 +33,18 @@
                         <p>No image available</p>
                     {% endif %}
                     
-                    <a href="{% url 'book_detail' book.id %}">View Details</a>
-                </div>
+<!-- View Details Button -->
+<form action="{% url 'book_detail' book.id %}" method="get">
+    <button type="submit" class="view-details-btn">View Details</button>
+</form>                </div>
             {% empty %}
                 <p>No recommended books at the moment.</p>
             {% endfor %}
         </div>
+        {% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Library Management System</p>
-    </footer>
+    <!-- Include Footer -->
+    {% include 'library/footer.html' %}
 </body>
 </html>

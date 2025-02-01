@@ -1,6 +1,11 @@
-<h1>Add a New Book</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Book</button>
-</form>
+<!-- add_book.html -->
+{% extends 'library/home.html' %}
+
+{% block content %}
+    <h2>Add New Book</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Book</button>
+    </form>
+{% endblock %}

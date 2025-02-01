@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Book Details</title>
+    <link rel="stylesheet" href="{% static 'library/styles.css' %}">
+</head>
+<body>
+    <!-- Include Header -->
+    {% include 'library/header.html' %}
+
+    <main class="book-detail-page">
+        <h1>Book Details</h1>
+        <div class="book-detail">
+            <h2>{{ book.title }}</h2>
+            <p>Author: {{ book.author }}</p>
+            <p>Description: {{ book.description }}</p>
+
+            {% if book.image %}
+                <img src="{{ book.image.url }}" alt="Book image" width="200">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+        </div>
+
+        <!-- Back Button -->
+        <button onclick="window.location.href='{% url 'book_list' %}'" class="back-btn">
+            Back to Book List
+        </button>
+        
+    </main>
+
+    <!-- Include Footer -->
+    {% include 'library/footer.html' %}
+</body>
+</html>

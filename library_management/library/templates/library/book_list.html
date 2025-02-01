@@ -1,96 +1,84 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library - Available and Unavailable Books</title>
-    
-    <!-- Load the static files tag -->
-    {% load static %}
-
-    <!-- Link to the CSS file -->
+    <title>Book List</title>
     <link rel="stylesheet" href="{% static 'library/styles.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'book_list' %}">Book List</a></li>
-
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% if user.user_type == 'client' %}
-                        <li><a href="{% url 'member_dashboard' %}">Dashboard</a></li>
-                    {% elif user.user_type == 'privileged' %}
-                        <li><a href="{% url 'privileged_dashboard' %}">Privileged Dashboard</a></li>
-                    {% elif user.user_type == 'admin' %}
-                        <li><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
-                    {% endif %}
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        <form method="get" action="{% url 'book_list' %}">
-            <input type="text" name="search" placeholder="Search for books...">
-            <button type="submit">Search</button>
-        </form>
-    </header>
+    <!-- Include Header -->
+    {% include 'library/header.html' %}
 
     <main>
-        <h1>Available Books</h1>
+        <h1>Book List</h1>
+
+        <h2>Available Books</h2>
         <div class="book-list">
             {% for book in available_books %}
                 <div class="book-item">
                     <h2>{{ book.title }}</h2>
                     <p>Author: {{ book.author }}</p>
                     <p>Description: {{ book.description }}</p>
-                    
-                    <!-- Display the image if available -->
+
                     {% if book.image %}
                         <img src="{{ book.image.url }}" alt="Book image" width="200">
                     {% else %}
                         <p>No image available</p>
                     {% endif %}
 
-                    {% if user.is_authenticated %}
-                        {% if user.user_type == 'client' %}
-                            <a href="{% url 'borrow_book' book.id %}">Borrow</a>
-                        {% endif %}
-                    {% endif %}
+                    <!-- Borrow Button -->
+                    <form action="{% url 'borrow_book' book.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="borrow-btn">Borrow</button>
+                    </form>
+
+                    <!-- View Details Button -->
+                    <form action="{% url 'book_detail' book.id %}" method="get">
+                        <button type="submit" class="view-details-btn">View Details</button>
+                    </form>
                 </div>
             {% empty %}
-                <p>No available books found.</p>
+                <p>No available books at the moment.</p>
             {% endfor %}
         </div>
 
-        <h1>Unavailable Books</h1>
+        <h2>Unavailable Books</h2>
         <div class="book-list">
             {% for book in unavailable_books %}
                 <div class="book-item">
                     <h2>{{ book.title }}</h2>
                     <p>Author: {{ book.author }}</p>
                     <p>Description: {{ book.description }}</p>
-                    
-                    <!-- Display the image if available -->
+
                     {% if book.image %}
                         <img src="{{ book.image.url }}" alt="Book image" width="200">
                     {% else %}
                         <p>No image available</p>
                     {% endif %}
-                    
-                    <p>This book is currently unavailable.</p>
+
+                    <!-- Return Button -->
+                    {% if book in borrowed_books %}
+                        <form action="{% url 'return_book' book.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="return-btn">Return</button>
+                        </form>
+                    {% else %}
+                    {% endif %}
+
+                    <!-- View Details Button -->
+                    <form action="{% url 'book_detail' book.id %}" method="get">
+                        <button type="submit" class="view-details-btn">View Details</button>
+                    </form>
                 </div>
             {% empty %}
-                <p>No unavailable books found.</p>
+                <p>No unavailable books at the moment.</p>
             {% endfor %}
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Library Management System</p>
-    </footer>
+    <!-- Include Footer -->
+    {% include 'library/footer.html' %}
 </body>
 </html>

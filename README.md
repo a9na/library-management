@@ -30,8 +30,8 @@ The LMS will be a web-based application that allows library staff and members to
 
 ### 2.1 Product Perspective
 The Library Management System will be a web application designed for library staff and members. It will have distinct user roles with different levels of access:
-- **Client:** Can view books and borrow them.
-- **Privileged User:** Can add books and manage their own borrowed books.
+- **Reader:** Can view books and borrow them.
+- **Librarian:** Can add books and manage their own borrowed books.
 - **Administrator:** Can manage all users and books and access the admin dashboard.
 
 The system will use a simple and intuitive interface with features that allow easy navigation for both staff and members.
@@ -39,14 +39,14 @@ The system will use a simple and intuitive interface with features that allow ea
 ### 2.2 Product Functions
 - **Book Management:** Admin can add, remove, and modify book details.
 - **Member Management:** Admin can add, update, or delete member accounts.
-- **Book Search:** Priviliged Users can search for books by title, author, genre, etc.
+- **Book Search:** Librarian Users can search for books by title, author, genre, etc.
 - **Borrowing and Returning Books:** Members can borrow books and return them on time.
 - **Notifications:** Members will be notified of overdue books or book availability.
 
 ### 2.3 User Classes and Characteristics
 The LMS will have three primary user classes:
-- **Client:** Can view books and borrow them.
-- **Privileged User:** Can add books and manage their own borrowed books.
+- **Reader:** Can view books and borrow them.
+- **Librarian:** Can add books and manage their own borrowed books.
 - **Administrator:** Can manage all users and books and access the admin dashboard.
 
 ### 2.4 Operating Environment
@@ -111,7 +111,7 @@ The application will use a web-based user interface compatible with desktop and 
 - The database will be managed using SQLite for the initial version.
   
 #### 3.3.3 Communications Interfaces
-The system will use secure HTTP (HTTPS) for communication between the client and server.
+The system will use secure HTTP (HTTPS) for communication between the reader and server.
 
 ## 4. Other Non-Functional Requirements
 
