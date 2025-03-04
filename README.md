@@ -36,13 +36,6 @@ The Library Management System will be a web application designed for library sta
 
 The system will use a simple and intuitive interface with features that allow easy navigation for both staff and members.
 
-### 2.2 Product Functions
-- **Book Management:** Admin can add, remove, and modify book details.
-- **Member Management:** Admin can add, update, or delete member accounts.
-- **Book Search:** Librarian Users can search for books by title, author, genre, etc.
-- **Borrowing and Returning Books:** Members can borrow books and return them on time.
-- **Notifications:** Members will be notified of overdue books or book availability.
-
 ### 2.3 User Classes and Characteristics
 The LMS will have three primary user classes:
 - **Reader:** Can view books and borrow them.
@@ -126,3 +119,4 @@ The system will use secure HTTP (HTTPS) for communication between the reader and
 
 ## 5. Conclusion
 This document outlines the primary requirements for the Library Management System, focusing on both functional and non-functional aspects to ensure that the system meets user needs and provides a reliable, secure, and user-friendly platform for library management.
+# library-management
